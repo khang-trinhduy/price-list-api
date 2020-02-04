@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 
 const { prices } = require("../models/price");
 const { cars } = require("../models/car");
+const { car_seed } = require("../models/car/seed");
 const { provinces } = require("../models/province");
 // const {prices} = require('../models/price')
 
 var dbURI = "mongodb://localhost/pricelist";
 
 if (process.env.NODE_ENV === "production") {
-  dbURI = 'mongodb://admin:admin1@ds041198.mlab.com:41198/heroku_7w6cx7n4';
+  dbURI = "mongodb://admin:admin1@ds041198.mlab.com:41198/heroku_7w6cx7n4";
 }
 
 mongoose.connect(dbURI, { useNewUrlParser: true });
@@ -28,13 +29,16 @@ if (process.platform === "win32") {
 
 mongoose.connection.on("connected", function() {
   console.log("Mongoose connected to " + dbURI);
-  //   arts.find((err, art) => {
-  //     if (err) {
-  //       console.error(err);
-  //     }
-  //     arts.deleteMany({}, () => {});
-  //     if (art.length <= 1) arts.insertMany(art_seed);
-  //   });
+
+  cars.find((error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      if (!result || result.length <= 1) {
+        cars.insertMany(car_seed);
+      }
+    }
+  });
 });
 mongoose.connection.on("disconnected", function() {
   console.log("Mongoose disconnected");

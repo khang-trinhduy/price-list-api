@@ -6,11 +6,11 @@ var sendJsonResponse = (res, status, content) => {
 };
 
 exports.list = (req, res, next) => {
-  cars.find({}, (error, cars) => {
+  cars.find({}, (error, result) => {
     if (error) {
       sendJsonResponse(res, 400, error);
     } else {
-      sendJsonResponse(res, 200, cars);
+      sendJsonResponse(res, 200, result);
     }
   });
 };
@@ -19,7 +19,7 @@ exports.show = (req, res, next) => {
   if (!req.params.id) {
     sendJsonResponse(res, 400, { message: "car id required" });
   } else {
-    cars.findById(req.id, (error, car) => {
+    cars.findById(req.params.id, (error, car) => {
       if (error) {
         sendJsonResponse(res, 400, error);
       } else if (!car) {
