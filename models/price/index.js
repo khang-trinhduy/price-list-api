@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var priceSchema = new Schema({
+  total: { type: Number, required: true },
+  contact: { type: String, required: true },
   price: { type: Number, required: true, default: 0 },
   prepaidFee: { type: Number, required: true },
   licenseFee: { type: Number, required: true, default: 1000000 },

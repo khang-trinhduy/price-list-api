@@ -11,6 +11,8 @@ router.get("/", function(req, res, next) {
 
 // price controller
 router.get("/prices", priceCtrl.list);
+router.get("/prices", priceCtrl.show);
+router.post("/prices", priceCtrl.create);
 
 // car controller
 router.get("/cars", carCtrl.list);

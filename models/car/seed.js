@@ -15,7 +15,7 @@ exports.car_seed = [
     name: "LUX SA2.0",
     version: "advance",
     color: "Beige/Brown",
-    price: "1614400000"
+    price: "1814400000"
   },
   { name: "FADIL", version: "luxury", color: "", price: "471900000" },
   { name: "LUX A2.0", version: "luxury", color: "Black", price: "1337000000" },
