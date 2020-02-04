@@ -8,7 +8,7 @@ const { provinces } = require("../models/province");
 var dbURI = "mongodb://localhost/pricelist";
 
 if (process.env.NODE_ENV === "production") {
-  dbURI = process.env.MONGOLAB_URI;
+  dbURI = 'mongodb://admin:admin1@ds041198.mlab.com:41198/heroku_7w6cx7n4';
 }
 
 mongoose.connect(dbURI, { useNewUrlParser: true });
