@@ -4,6 +4,7 @@ const { prices } = require("../models/price");
 const { cars } = require("../models/car");
 const { car_seed } = require("../models/car/seed");
 const { provinces } = require("../models/province");
+const { province_seed } = require("../models/province/seed");
 // const {prices} = require('../models/price')
 
 var dbURI = "mongodb://localhost/pricelist";
@@ -36,6 +37,16 @@ mongoose.connection.on("connected", function() {
     } else {
       if (!result || result.length <= 1) {
         cars.insertMany(car_seed);
+      }
+    }
+  });
+
+  provinces.find((error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      if (!result || result.length <= 1) {
+        provinces.insertMany(province_seed);
       }
     }
   });
