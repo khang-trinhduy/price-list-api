@@ -1,0 +1,12 @@
+var mongoose = require("mongoose");
+
+var Schema = mongoose.Schema;
+
+var carSchema = new Schema({
+  name: { type: String, required: true },
+  price: { type: Number, required: true }
+});
+
+module.exports.cars = mongoose.model("cars", carSchema);
+
+module.exports.car_schema = carSchema;
