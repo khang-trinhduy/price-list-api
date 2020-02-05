@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var carSchema = new Schema({
+  display: { type: String },
   name: { type: String, required: true },
   price: { type: Number, required: true },
   color: { type: String, required: false },

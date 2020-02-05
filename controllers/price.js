@@ -23,10 +23,9 @@ exports.create = (req, res, next) => {
   if (
     !req.body.province ||
     !req.body.car ||
-    !req.body.contact ||
     !req.body.model
   ) {
-    sendJsonResponse(res, 400, `province, car, model and contact are required`);
+    sendJsonResponse(res, 400, `province, car, and model are required`);
   } else {
     provinces.findOne({ name: req.body.province }, (err, province) => {
       if (err) {
