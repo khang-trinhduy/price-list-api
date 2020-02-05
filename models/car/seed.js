@@ -11,14 +11,14 @@ exports.car_seed = [
     version: "standard",
     color: "",
     price: "1099000000",
-    display: "VinFast FADIL Phiên Bản Tiêu Chuẩn - LUX A 2.0"
+    display: "VinFast LUX A 2.0 Phiên Bản Tiêu Chuẩn"
   },
   {
     name: "LUX SA2.0",
     version: "standard",
     color: "",
     price: "1530000000",
-    display: "VinFast FADIL Phiên Bản Tiêu Chuẩn - LUX SA 2.0"
+    display: "VinFast LUX SA 2.0 Phiên Bản Tiêu Chuẩn"
   },
   {
     name: "FADIL",
@@ -32,28 +32,28 @@ exports.car_seed = [
     version: "advance",
     color: "",
     price: "1187000000",
-    display: "VinFast FADIL Phiên Bản Nâng Cao - LUX A 2.0"
+    display: "VinFast LUX A 2.0 Phiên Bản Nâng Cao"
   },
   {
     name: "LUX A2.0",
     version: "advance",
     color: "Beige/Brown",
     price: "1348700000",
-    display: "VinFast FADIL Phiên Bản  Nâng Cao - LUX A 2.0 (Be/Nâu)"
+    display: "VinFast LUX A 2.0 (Be/Nâu) Phiên Bản  Nâng Cao"
   },
   {
     name: "LUX SA2.0",
     version: "advance",
     color: "",
     price: "1614400000",
-    display: "VinFast FADIL Phiên Bản Nâng Cao - LUX SA 2.0"
+    display: "VinFast LUX SA 2.0 Phiên Bản Nâng Cao"
   },
   {
     name: "LUX SA2.0",
     version: "advance",
     color: "Beige/Brown",
     price: "1814400000",
-    display: "VinFast FADIL Phiên Bản Nâng Cao - LUX SA 2.0 (Be/Nâu)"
+    display: "VinFast LUX SA 2.0 (Be/Nâu) Phiên Bản Nâng Cao"
   },
   {
     name: "FADIL",
@@ -67,13 +67,13 @@ exports.car_seed = [
     version: "luxury",
     color: "Black",
     price: "1337000000",
-    display: "VinFast FADIL Phiên Bản Cao Cấp - LUX A 2.0 (Đen)"
+    display: "VinFast LUX A 2.0 (Đen) Phiên Bản Cao Cấp"
   },
   {
     name: "LUX SA2.0",
     version: "luxury",
     color: "Black",
     price: "1803400000",
-    display: "VinFast FADIL Phiên Bản Cao Cấp - LUX SA 2.0 (Đen)"
+    display: "VinFast LUX SA 2.0 (Đen) Phiên Bản Cao Cấp"
   }
 ];
