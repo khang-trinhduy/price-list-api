@@ -78,8 +78,9 @@ exports.create = (req, res, next) => {
                 transitFee +
                 publicFee +
                 registrationFee +
-                registryFee +
-                carInsurance;
+                registryFee;
+                //  +
+                // carInsurance;
               let pricelist = {
                 contact: req.body.contact,
                 price: price,
