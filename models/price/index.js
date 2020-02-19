@@ -12,7 +12,17 @@ var priceSchema = new Schema({
   transitInsuranceFee: { type: Number, required: true, default: 1560000 },
   publicInsuranceFee: { type: Number, required: true, default: 550000 },
   carInsuranceFee: { type: Number, required: true },
-  carRetristrationFee: { type: Number, required: true, default: 3500000 }
+  carRetristrationFee: { type: Number, required: true, default: 3500000 },
+  carId: { type: String },
+  carName: { type: String },
+  carType: { type: String },
+  img: { type: String },
+  result: { type: Number },
+  type: { type: Number, default: 1 },
+  province: { type: String },
+  benefit: { type: Number },
+  gift: { type: Number },
+  insurance: { type: Boolean }
 });
 
 mongoose.model("prices", priceSchema);

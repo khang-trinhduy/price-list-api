@@ -1,6 +1,7 @@
 const { prices } = require("../models/price");
 const { provinces } = require("../models/province");
 const { cars } = require("../models/car");
+var multer = require("./multer");
 
 var sendJsonResponse = (res, status, content) => {
   res.status(status);
@@ -12,19 +13,87 @@ exports.list = (req, res, next) => {
     if (error) {
       sendJsonResponse(res, 400, error);
     } else {
-      sendJsonResponse(res, 200, prices);
+      if (prices && prices.length > 5) {
+        let reverse = prices.reverse();
+        sendJsonResponse(res, 200, reverse.slice(0, 5));
+      } else {
+        sendJsonResponse(res, 200, prices);
+
+      }
     }
   });
 };
 
-exports.show = (req, res, next) => {};
+exports.show = (req, res, next) => {
+  if (!req.params.id) {
+    sendJsonResponse(res, 400, { error: "id required" });
+  } else {
+    prices.findById(req.params.id, (error, price) => {
+      if (error) {
+        sendJsonResponse(res, 400, error);
+      } else if (!price) {
+        sendJsonResponse(
+          res,
+          404,
+          `cannot find price with id ${req.params.id}`
+        );
+      } else {
+        sendJsonResponse(res, 200, price);
+      }
+    });
+  }
+};
+
+exports.upload = (req, res, next) => {
+  // input: images, req.params.id, body: final, insurance, gift, type
+  multer.upload(req, res, err => {
+    if (err instanceof multer.error) {
+      sendJsonResponse(res, 400, { message: "multer error", error: err });
+    } else if (err) {
+      sendJsonResponse(res, 400, { message: "server error", error: err });
+    } else {
+      sendJsonResponse(res, 201, { file: req.file, message: "file uploaded" });
+    }
+  });
+};
+
+exports.update = (req, res, next) => {
+  if (!req.params.id) {
+    sendJsonResponse(res, 400, { error: "id required" });
+  } else {
+    prices.findById(req.params.id, (error, price) => {
+      if (error) {
+        sendJsonResponse(res, 400, error);
+      } else if (!price) {
+        sendJsonResponse(res, 404, {
+          error: `cannot find price with id ${req.params.id}`
+        });
+      } else {
+        if (!req.body.final || !req.body.image) {
+          sendJsonResponse(res, 400, {
+            error: `final and image are required`
+          });
+        } else {
+          price.total = req.body.final;
+          price.insurance = req.body.insurance || false;
+          price.gift = req.body.gift || 0;
+          price.img = req.body.image;
+          price.benefit = req.body.benefit || 0;
+          price.save((err, result) => {
+            if (err) {
+              sendJsonResponse(res, 400, err);
+            } else {
+              sendJsonResponse(res, 200, result);
+            }
+          });
+        }
+      }
+    });
+  }
+};
 
 exports.create = (req, res, next) => {
-  if (
-    !req.body.province ||
-    !req.body.car ||
-    !req.body.model
-  ) {
+  if (!req.body.province || !req.body.car || !req.body.model) {
     sendJsonResponse(res, 400, `province, car, and model are required`);
   } else {
     provinces.findOne({ name: req.body.province }, (err, province) => {
@@ -79,15 +148,19 @@ exports.create = (req, res, next) => {
                 publicFee +
                 registrationFee +
                 registryFee;
-                //  +
-                // carInsurance;
+              //  +
+              // carInsurance;
               let pricelist = {
                 contact: req.body.contact,
                 price: price,
                 prepaidFee: prepaid,
                 licenseFee: license,
                 carInsuranceFee: carInsurance,
-                total: total
+                total: total,
+                carId: car._id,
+                carName: car.name,
+                carType: car.version,
+                province: province.name
               };
               prices.create(pricelist, (er, result) => {
                 if (er) {
